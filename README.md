@@ -2,7 +2,7 @@
 
 An interactive tour of the solar system, built with **only HTML and CSS** — no JavaScript.
 
-**[View live demo →](#)** *(add your GitHub Pages link here after deploying)*
+**[View live demo →](#)** file:///C:/Users/srmin/Desktop/Github%20Projects/vs%20Code/New%20folder/Github/index.html
 
 *(Tip: add a screenshot or short screen-recording GIF here once it's live — it's what makes people actually click through on LinkedIn.)*
 
