@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Explore the Universe — pure HTML & CSS solar system
+   ========================================================================== */
+
+:root {
+  --bg-deep:      #060815;
+  --bg-mid:       #0b0f24;
+  --ink:          #e9e7f2;
+  --ink-dim:      #9498b8;
+  --ink-faint:    #5c6089;
+  --gold:         #f0c36d;
+  --gold-dim:     #a98849;
+  --line:         rgba(233, 231, 242, 0.12);
+  --card-bg:      rgba(15, 18, 38, 0.55);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 120% 80% at 50% -10%, var(--bg-mid) 0%, var(--bg-deep) 55%, #020308 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Starfield — three depths of stars via box-shadow, no images/JS
+   -------------------------------------------------------------------------- */
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stars::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.stars--small::before {
+  box-shadow: 63.94vw 2.5vh, 27.5vw 22.32vh, 73.65vw 67.67vh, 89.22vw 8.69vh, 42.19vw 2.98vh, 21.86vw 50.54vh, 2.65vw 19.88vh, 64.99vw 54.49vh, 22.04vw 58.93vh, 80.94vw 0.65vh, 80.58vw 69.81vh, 34.03vw 15.55vh, 95.72vw 33.66vh, 9.27vw 9.67vh, 84.75vw 60.37vh, 80.71vw 72.97vh, 53.62vw 97.31vh, 37.85vw 55.2vh, 82.94vw 61.85vh, 86.17vw 57.74vh, 70.46vw 4.58vh, 22.79vw 28.94vh, 7.98vw 23.28vh, 10.1vw 27.8vh, 63.57vw 36.48vh, 37.02vw 20.95vh, 26.7vw 93.67vh, 64.8vw 60.91vh, 17.11vw 72.91vh, 16.34vw 37.95vh, 98.95vw 64.0vh, 55.69vw 68.46vh, 84.29vw 77.6vh, 22.9vw 3.21vh, 31.55vw 26.77vh, 21.1vw 94.29vh, 87.64vw 31.47vh, 65.54vw 39.56vh, 91.45vw 45.89vh, 26.49vw 24.66vh, 56.14vw 26.27vh, 58.46vw 89.78vh, 39.94vw 21.93vh, 99.75vw 50.95vh, 9.09vw 4.71vh, 10.96vw 62.74vh, 79.21vw 42.22vh, 6.35vw 38.16vh, 99.61vw 52.91vh, 97.11vw 86.08vh, 1.15vw 72.07vh, 68.17vw 53.7vh, 26.68vw 64.1vh, 11.16vw 43.48vh, 45.37vw 95.38vh, 87.59vw 26.34vh, 50.06vw 17.87vh, 91.26vw 87.05vh, 29.84vw 63.89vh, 60.9vw 15.28vh, 76.25vw 53.94vh, 77.86vw 53.04vh, 0.06vw 32.42vh, 1.95vw 92.91vh, 87.87vw 83.17vh, 30.75vw 5.79vh, 87.8vw 94.69vh, 8.57vw 48.6vh, 6.92vw 76.06vh, 76.58vw 12.84vh, 47.53vw 54.98vh, 26.51vw 87.24vh, 42.31vw 21.18vh, 53.93vw 72.99vh, 20.12vw 31.17vh, 99.51vw 64.99vh, 43.81vw 51.76vh, 12.1vw 22.47vh, 33.81vw 58.83vh, 23.01vw 22.02vh, 7.1vw 63.11vh, 22.89vw 90.54vh, 85.96vw 7.09vh, 23.8vw 66.9vh, 21.42vw 13.23vh, 93.55vw 57.1vh, 47.27vw 78.46vh, 80.75vw 19.04vh, 9.69vw 43.11vh, 42.36vw 46.7vh, 72.91vw 67.34vh, 98.42vw 9.84vh, 40.26vw 33.93vh, 86.17vw 24.87vh, 19.02vw 44.86vh, 42.19vw 27.85vh, 24.98vw 92.33vh, 44.31vw 86.13vh, 55.03vw 5.06vh, 99.93vw 83.6vh, 96.9vw 92.64vh, 84.87vw 16.63vh, 48.56vw 21.37vh, 40.1vw 5.86vh, 37.9vw 98.53vh, 26.52vw 78.41vh, 45.5vw 42.3vh, 95.73vw 99.54vh, 55.58vw 71.84vh, 15.48vw 29.67vh, 96.87vw 57.92vh, 54.22vw 74.8vh, 5.72vw 58.42vh, 50.29vw 85.27vh, 15.74vw 96.08vh, 8.01vw 18.58vh, 59.5vw 67.52vh, 23.52vw 11.99vh, 89.03vw 24.62vh, 59.45vw 61.94vh, 41.92vw 58.37vh, 52.28vw 93.47vh, 20.43vw 71.62vh, 23.87vw 39.58vh, 67.17vw 30.0vh, 31.62vw 75.19vh, 7.25vw 45.83vh, 99.85vw 99.61vh, 7.33vw 21.32vh, 26.52vw 93.33vh, 88.09vw 87.93vh, 36.95vw 15.77vh, 83.37vw 70.35vh, 61.17vw 98.72vh, 65.4vw 0.78vh, 81.71vw 29.94vh, 66.34vw 93.89vh, 13.43vw 11.54vh, 10.7vw 55.32vh, 27.23vw 60.48vh, 71.76vw 20.36vh, 63.42vw 26.4vh, 48.85vw 90.53vh, 84.61vw 9.23vh, 42.36vw 27.67vh, 0.35vw 77.11vh, 63.71vw 26.2vh, 74.12vw 55.17vh, 42.77vw 0.97vh, 7.52vw 88.31vh, 90.39vw 54.56vh, 83.46vw 58.25vh, 14.81vw 12.74vh, 30.83vw 89.9vh, 79.61vw 86.07vh, 89.89vw 21.01vh, 24.95vw 10.28vh, 78.01vw 88.41vh, 40.64vw 62.07vh, 15.46vw 92.99vh, 86.46vw 97.62vh, 81.08vw 88.14vh, 2.48vw 73.66vh, 33.22vw 93.08vh, 80.22vw 86.41vh, 81.07vw 26.68vh, 78.74vw 10.81vh, 87.22vw 85.86vh, 22.24vw 81.66vh, 46.03vw 30.52vh, 79.53vw 22.76vh, 2.37vw 19.31vh, 32.83vw 86.44vh, 96.69vw 27.91vh, 64.15vw 39.97vh, 98.11vw 53.62vh, 93.92vw 11.53vh, 97.04vw 17.86vh, 96.25vw 26.55vh, 10.84vw 43.46vh;
+  animation: twinkle 4.5s ease-in-out infinite;
+}
+
+.stars--mid::before {
+  width: 3px;
+  height: 3px;
+  box-shadow: 72.85vw 31.37vh, 60.62vw 51.14vh, 38.52vw 57.66vh, 25.47vw 70.88vh, 0.17vw 92.56vh, 53.85vw 71.94vh, 74.2vw 67.06vh, 36.42vw 7.0vh, 66.42vw 33.02vh, 31.39vw 84.8vh, 71.98vw 30.03vh, 30.93vw 40.84vh, 40.24vw 29.57vh, 12.73vw 42.04vh, 94.04vw 67.73vh, 90.28vw 61.55vh, 30.09vw 54.79vh, 0.04vw 28.69vh, 42.99vw 58.0vh, 65.47vw 46.5vh, 44.22vw 21.37vh, 47.32vw 90.12vh, 79.6vw 16.97vh, 8.48vw 51.55vh, 63.29vw 33.52vh, 81.84vw 75.11vh, 67.28vw 22.46vh, 19.91vw 2.44vh, 24.48vw 47.51vh, 84.97vw 7.28vh, 41.44vw 62.98vh, 19.44vw 69.64vh, 49.44vw 24.4vh, 65.61vw 0.55vh, 75.1vw 77.0vh, 10.66vw 42.51vh, 17.59vw 95.8vh, 51.8vw 5.02vh, 24.92vw 84.83vh, 45.65vw 80.14vh, 66.76vw 98.79vh, 59.55vw 95.0vh, 89.14vw 61.27vh, 71.93vw 50.48vh, 83.06vw 54.79vh, 89.72vw 74.37vh, 47.47vw 25.92vh, 24.72vw 63.77vh, 76.58vw 52.13vh, 62.67vw 27.46vh, 7.75vw 28.57vh, 27.17vw 31.97vh, 54.02vw 13.84vh, 23.13vw 69.39vh, 70.64vw 6.42vh, 40.76vw 54.26vh, 41.58vw 20.68vh, 42.01vw 90.48vh, 58.41vw 69.55vh, 85.67vw 76.56vh, 38.04vw 0.59vh, 35.18vw 75.35vh, 85.34vw 95.34vh, 41.9vw 74.75vh, 54.61vw 60.33vh, 22.05vw 21.94vh, 43.58vw 2.9vh, 33.61vw 67.91vh, 40.43vw 16.5vh, 46.74vw 12.76vh, 62.23vw 2.7vh, 39.4vw 56.44vh, 2.71vw 64.27vh, 13.57vw 46.17vh, 5.03vw 37.91vh, 21.17vw 32.68vh, 76.12vw 37.91vh, 75.2vw 83.19vh, 25.23vw 8.19vh, 1.94vw 53.94vh, 99.99vw 35.0vh, 65.01vw 78.12vh, 65.18vw 75.42vh, 94.96vw 19.94vh, 2.04vw 15.24vh, 12.62vw 66.95vh, 56.4vw 21.8vh, 69.95vw 76.69vh, 16.78vw 60.72vh, 74.79vw 11.45vh;
+  animation: twinkle 6s ease-in-out infinite 1.2s;
+}
+
+.stars--large::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  box-shadow: 81.93vw 96.47vh, 10.81vw 2.57vh, 31.2vw 67.73vh, 95.82vw 39.67vh, 71.5vw 7.6vh, 69.06vw 62.72vh, 10.19vw 77.25vh, 85.03vw 60.04vh, 12.11vw 98.38vh, 78.26vw 34.72vh, 42.84vw 37.06vh, 50.6vw 34.12vh, 84.96vw 82.23vh, 10.55vw 96.08vh, 63.56vw 82.87vh, 70.73vw 43.55vh, 73.38vw 96.55vh, 27.01vw 80.82vh, 53.82vw 48.35vh, 43.56vw 73.1vh, 26.84vw 85.17vh, 83.07vw 8.67vh, 88.16vw 24.39vh, 46.47vw 61.03vh, 37.9vw 2.87vh, 85.1vw 18.18vh, 21.21vw 79.78vh, 34.03vw 88.03vh, 70.12vw 27.63vh, 1.02vw 94.81vh, 8.56vw 72.01vh, 48.86vw 75.82vh, 69.06vw 64.59vh, 49.08vw 79.29vh, 9.31vw 22.16vh, 69.18vw 30.62vh, 58.16vw 47.33vh, 53.09vw 42.55vh, 74.59vw 33.08vh, 70.29vw 27.09vh;
+  animation: twinkle 5s ease-in-out infinite 0.6s, drift 90s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-40px); }
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-head {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.site-head__kicker {
+  margin: 0 0 0.9rem;
+  font-size: 0.92rem;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.site-head__title {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.site-head__sub {
+  margin: 0 auto;
+  max-width: 40ch;
+  color: var(--ink-dim);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Orrery — the orbiting overview
+   -------------------------------------------------------------------------- */
+
+.orrery {
+  position: relative;
+  z-index: 2;
+  width: min(640px, 88vw);
+  aspect-ratio: 1 / 1;
+  margin: 1rem auto 4rem;
+}
+
+.orrery__sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 30%, #fff3d0, var(--gold) 55%, #b9832f 100%);
+  box-shadow: 0 0 24px 6px rgba(240, 195, 109, 0.55), 0 0 60px 20px rgba(240, 195, 109, 0.18);
+}
+
+.orrery__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin linear infinite;
+}
+
+.orrery__ring--1 { width: 15%;  height: 15%;  animation-duration: 6s;  }
+.orrery__ring--2 { width: 24%;  height: 24%;  animation-duration: 9s;  }
+.orrery__ring--3 { width: 34%;  height: 34%;  animation-duration: 14s; }
+.orrery__ring--4 { width: 44%;  height: 44%;  animation-duration: 20s; }
+.orrery__ring--5 { width: 56%;  height: 56%;  animation-duration: 30s; }
+.orrery__ring--6 { width: 68%;  height: 68%;  animation-duration: 42s; }
+.orrery__ring--7 { width: 80%;  height: 80%;  animation-duration: 55s; }
+.orrery__ring--8 { width: 92%;  height: 92%;  animation-duration: 70s; }
+
+.orrery__ring:hover { animation-play-state: paused; }
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.orrery__body {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 32% 28%, #ffffff55, var(--body-color) 55%);
+  box-shadow: 0 0 8px 2px color-mix(in srgb, var(--body-glow) 70%, transparent);
+  animation: counter-spin inherit;
+  animation-duration: inherit;
+  cursor: default;
+}
+
+.orrery__ring--6 .orrery__body,
+.orrery__ring--5 .orrery__body { width: 14px; height: 14px; top: -7px; }
+
+@keyframes counter-spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(-360deg); }
+}
+
+.orrery__label {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  font-size: 0.76rem;
+  color: var(--ink);
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.orrery__body:hover .orrery__label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.orrery__body:hover {
+  box-shadow: 0 0 16px 5px color-mix(in srgb, var(--body-glow) 85%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Explorer — one planet at a time, driven by the radio/label pattern
+   -------------------------------------------------------------------------- */
+
+.explorer {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+}
+
+.explorer__radio {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.explorer__stage {
+  position: relative;
+  min-height: 360px;
+}
+
+.planet-card {
+  display: none;
+  grid-template-columns: 220px 1fr;
+  gap: 2.75rem;
+  align-items: center;
+  padding: 2.25rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+}
+
+#p-mercury:checked ~ .explorer__stage #card-mercury,
+#p-venus:checked   ~ .explorer__stage #card-venus,
+#p-earth:checked   ~ .explorer__stage #card-earth,
+#p-mars:checked    ~ .explorer__stage #card-mars,
+#p-jupiter:checked ~ .explorer__stage #card-jupiter,
+#p-saturn:checked  ~ .explorer__stage #card-saturn,
+#p-uranus:checked  ~ .explorer__stage #card-uranus,
+#p-neptune:checked ~ .explorer__stage #card-neptune {
+  display: grid;
+  animation: fade-in 0.35s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.planet-card__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+}
+
+.planet-sphere {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  box-shadow: inset -18px -14px 30px rgba(0,0,0,0.55), 0 0 40px 4px rgba(0,0,0,0.25);
+}
+
+.planet-sphere--mercury { background: radial-gradient(circle at 35% 30%, #cfcac8, #8c8785 60%, #55514f); }
+.planet-sphere--venus   { background: radial-gradient(circle at 35% 30%, #f2d9ab, #d9a066 60%, #8c6636); }
+.planet-sphere--earth   { background: radial-gradient(circle at 35% 30%, #7ec4ee, #3e92cc 45%, #2c5f8a 70%, #1f4562); box-shadow: inset -18px -14px 30px rgba(0,0,0,0.45), 0 0 30px 6px rgba(62,146,204,0.35); }
+.planet-sphere--mars    { background: radial-gradient(circle at 35% 30%, #e08363, #b6543c 60%, #7a3527); }
+.planet-sphere--jupiter { background: radial-gradient(circle at 35% 30%, #f0dcb3, #d9a76a 40%, #a9723f 65%, #7d4f2b); width: 168px; height: 168px; }
+.planet-sphere--saturn  { background: radial-gradient(circle at 35% 30%, #f4e6bf, #e3c48a 50%, #b3925a); }
+.planet-sphere--uranus  { background: radial-gradient(circle at 35% 30%, #d3f0f4, #9fd6e0 55%, #5f9aa6); }
+.planet-sphere--neptune { background: radial-gradient(circle at 35% 30%, #93b0f0, #5b7fd9 55%, #35509e); }
+
+.planet-ring {
+  position: absolute;
+  width: 230px;
+  height: 70px;
+  border: 10px solid rgba(227, 196, 138, 0.4);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+  border-top-color: rgba(227, 196, 138, 0.15);
+}
+
+.planet-card__order {
+  margin: 0 0 0.4rem;
+  font-size: 0.86rem;
+  color: var(--gold);
+}
+
+.planet-card__name {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.1rem;
+  color: var(--ink);
+}
+
+.planet-card__fact {
+  margin: 0 0 1.4rem;
+  color: var(--ink-dim);
+  line-height: 1.65;
+  max-width: 46ch;
+}
+
+.planet-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 1.75rem;
+  margin: 0;
+}
+
+.planet-card__stats dt {
+  font-size: 0.76rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.3rem;
+}
+
+.planet-card__stats dd {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Controls — prev / next / dots, all pure CSS via the radio hack
+   -------------------------------------------------------------------------- */
+
+.explorer__controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.75rem;
+  gap: 1rem;
+}
+
+.nav-pair {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#p-mercury:checked ~ .explorer__controls .nav-pair--mercury,
+#p-venus:checked   ~ .explorer__controls .nav-pair--venus,
+#p-earth:checked   ~ .explorer__controls .nav-pair--earth,
+#p-mars:checked    ~ .explorer__controls .nav-pair--mars,
+#p-jupiter:checked ~ .explorer__controls .nav-pair--jupiter,
+#p-saturn:checked  ~ .explorer__controls .nav-pair--saturn,
+#p-uranus:checked  ~ .explorer__controls .nav-pair--uranus,
+#p-neptune:checked ~ .explorer__controls .nav-pair--neptune {
+  display: flex;
+}
+
+.explorer__nav {
+  cursor: pointer;
+  font-size: 0.94rem;
+  color: var(--ink-dim);
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  user-select: none;
+}
+
+.explorer__nav:hover {
+  color: var(--ink);
+  border-color: var(--gold-dim);
+  background: rgba(240, 195, 109, 0.07);
+}
+
+.explorer__dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.55rem;
+  margin-top: 3.4rem;
+}
+
+.explorer__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.explorer__dot:hover { background: var(--ink-dim); }
+
+#p-mercury:checked ~ .explorer__controls label.explorer__dot[for="p-mercury"],
+#p-venus:checked   ~ .explorer__controls label.explorer__dot[for="p-venus"],
+#p-earth:checked   ~ .explorer__controls label.explorer__dot[for="p-earth"],
+#p-mars:checked    ~ .explorer__controls label.explorer__dot[for="p-mars"],
+#p-jupiter:checked ~ .explorer__controls label.explorer__dot[for="p-jupiter"],
+#p-saturn:checked  ~ .explorer__controls label.explorer__dot[for="p-saturn"],
+#p-uranus:checked  ~ .explorer__controls label.explorer__dot[for="p-uranus"],
+#p-neptune:checked ~ .explorer__controls label.explorer__dot[for="p-neptune"] {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+
+/* keyboard focus support for the hidden radios */
+#p-mercury:focus-visible ~ .explorer__controls label[for="p-mercury"],
+#p-venus:focus-visible   ~ .explorer__controls label[for="p-venus"],
+#p-earth:focus-visible   ~ .explorer__controls label[for="p-earth"],
+#p-mars:focus-visible    ~ .explorer__controls label[for="p-mars"],
+#p-jupiter:focus-visible ~ .explorer__controls label[for="p-jupiter"],
+#p-saturn:focus-visible  ~ .explorer__controls label[for="p-saturn"],
+#p-uranus:focus-visible  ~ .explorer__controls label[for="p-uranus"],
+#p-neptune:focus-visible ~ .explorer__controls label[for="p-neptune"] {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-foot {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5rem 1.5rem 3rem;
+  color: var(--ink-faint);
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .planet-card {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    text-align: center;
+    padding: 1.75rem 1.5rem;
+  }
+  .planet-card__visual { height: 160px; }
+  .planet-sphere { width: 110px; height: 110px; }
+  .planet-sphere--jupiter { width: 130px; height: 130px; }
+  .planet-card__stats { grid-template-columns: repeat(3, auto); justify-content: center; gap: 1.1rem; }
+  .explorer__dots { position: static; transform: none; justify-content: center; margin-top: 1.25rem; order: 3; }
+  .explorer__controls { flex-wrap: wrap; }
+  .nav-pair { order: 1; }
+  .orrery { margin-bottom: 3rem; }
+}
+
+@media (max-width: 420px) {
+  .planet-card__stats { grid-template-columns: repeat(2, auto); }
+}
