@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore the Universe — A Solar System in CSS</title>
+<meta name="description" content="An interactive tour of the solar system, built entirely with HTML and CSS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="stars stars--small" aria-hidden="true"></div>
+  <div class="stars stars--mid" aria-hidden="true"></div>
+  <div class="stars stars--large" aria-hidden="true"></div>
+
+  <header class="site-head">
+    <p class="site-head__kicker">A pure HTML &amp; CSS solar system</p>
+    <h1 class="site-head__title">Explore the Universe</h1>
+    <p class="site-head__sub">Eight planets, one star, zero JavaScript. Hover the orbits, then step through each planet below.</p>
+  </header>
+
+  <section class="orrery" aria-label="Orbits of the solar system">
+    <div class="orrery__sun"></div>
+
+    <div class="orrery__ring orrery__ring--1">
+      <div class="orrery__body" style="--body-color:#b1adad;--body-glow:#e8e4e2;">
+        <span class="orrery__label">Mercury</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--2">
+      <div class="orrery__body" style="--body-color:#d9a066;--body-glow:#f2c78f;">
+        <span class="orrery__label">Venus</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--3">
+      <div class="orrery__body" style="--body-color:#3e92cc;--body-glow:#7ec4ee;">
+        <span class="orrery__label">Earth</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--4">
+      <div class="orrery__body" style="--body-color:#b6543c;--body-glow:#e08363;">
+        <span class="orrery__label">Mars</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--5">
+      <div class="orrery__body" style="--body-color:#d9a76a;--body-glow:#f0c993;">
+        <span class="orrery__label">Jupiter</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--6">
+      <div class="orrery__body" style="--body-color:#e3c48a;--body-glow:#f4dfae;">
+        <span class="orrery__label">Saturn</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--7">
+      <div class="orrery__body" style="--body-color:#9fd6e0;--body-glow:#c9edf2;">
+        <span class="orrery__label">Uranus</span>
+      </div>
+    </div>
+    <div class="orrery__ring orrery__ring--8">
+      <div class="orrery__body" style="--body-color:#5b7fd9;--body-glow:#95aeee;">
+        <span class="orrery__label">Neptune</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="explorer" aria-label="Planet explorer">
+
+    <input type="radio" name="planet" id="p-mercury" class="explorer__radio" checked>
+    <input type="radio" name="planet" id="p-venus" class="explorer__radio">
+    <input type="radio" name="planet" id="p-earth" class="explorer__radio">
+    <input type="radio" name="planet" id="p-mars" class="explorer__radio">
+    <input type="radio" name="planet" id="p-jupiter" class="explorer__radio">
+    <input type="radio" name="planet" id="p-saturn" class="explorer__radio">
+    <input type="radio" name="planet" id="p-uranus" class="explorer__radio">
+    <input type="radio" name="planet" id="p-neptune" class="explorer__radio">
+
+    <div class="explorer__stage">
+
+      <article class="planet-card" id="card-mercury" data-planet="mercury">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--mercury"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">1st from the Sun</p>
+          <h2 class="planet-card__name">Mercury</h2>
+          <p class="planet-card__fact">The smallest planet and the fastest — a year lasts just 88 Earth days, though a single day-night cycle takes 176.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>57.9 million km</dd></div>
+            <div><dt>Moons</dt><dd>0</dd></div>
+            <div><dt>Day length</dt><dd>1,408 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-venus" data-planet="venus">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--venus"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">2nd from the Sun</p>
+          <h2 class="planet-card__name">Venus</h2>
+          <p class="planet-card__fact">Wrapped in thick, reflective cloud, Venus is the hottest planet in the solar system and spins backwards relative to most others.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>108.2 million km</dd></div>
+            <div><dt>Moons</dt><dd>0</dd></div>
+            <div><dt>Day length</dt><dd>5,832 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-earth" data-planet="earth">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--earth"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">3rd from the Sun</p>
+          <h2 class="planet-card__name">Earth</h2>
+          <p class="planet-card__fact">The only known world with liquid water on its surface, an oxygen-rich atmosphere, and one large, tide-locking Moon.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>149.6 million km</dd></div>
+            <div><dt>Moons</dt><dd>1</dd></div>
+            <div><dt>Day length</dt><dd>24 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-mars" data-planet="mars">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--mars"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">4th from the Sun</p>
+          <h2 class="planet-card__name">Mars</h2>
+          <p class="planet-card__fact">Rust-red from iron oxide in its soil, Mars hosts Olympus Mons — the tallest volcano known in the solar system.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>227.9 million km</dd></div>
+            <div><dt>Moons</dt><dd>2</dd></div>
+            <div><dt>Day length</dt><dd>24.6 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-jupiter" data-planet="jupiter">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--jupiter"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">5th from the Sun</p>
+          <h2 class="planet-card__name">Jupiter</h2>
+          <p class="planet-card__fact">The largest planet by far, with a storm — the Great Red Spot — wide enough to swallow Earth several times over.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>778.5 million km</dd></div>
+            <div><dt>Moons</dt><dd>95</dd></div>
+            <div><dt>Day length</dt><dd>9.9 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-saturn" data-planet="saturn">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--saturn"></div><div class="planet-ring"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">6th from the Sun</p>
+          <h2 class="planet-card__name">Saturn</h2>
+          <p class="planet-card__fact">Best known for its bright ring system — countless particles of ice and rock, some no bigger than a grain of sand.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>1.43 billion km</dd></div>
+            <div><dt>Moons</dt><dd>146</dd></div>
+            <div><dt>Day length</dt><dd>10.7 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-uranus" data-planet="uranus">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--uranus"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">7th from the Sun</p>
+          <h2 class="planet-card__name">Uranus</h2>
+          <p class="planet-card__fact">Tipped almost fully on its side, Uranus rolls around the Sun rather than spinning upright like its neighbors.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>2.87 billion km</dd></div>
+            <div><dt>Moons</dt><dd>28</dd></div>
+            <div><dt>Day length</dt><dd>17.2 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="planet-card" id="card-neptune" data-planet="neptune">
+        <div class="planet-card__visual"><div class="planet-sphere planet-sphere--neptune"></div></div>
+        <div class="planet-card__info">
+          <p class="planet-card__order">8th from the Sun</p>
+          <h2 class="planet-card__name">Neptune</h2>
+          <p class="planet-card__fact">The windiest world we know of, with gusts over 2,000 km/h, and a deep blue color drawn from methane in its atmosphere.</p>
+          <dl class="planet-card__stats">
+            <div><dt>Distance from Sun</dt><dd>4.5 billion km</dd></div>
+            <div><dt>Moons</dt><dd>16</dd></div>
+            <div><dt>Day length</dt><dd>16.1 hours</dd></div>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="explorer__controls">
+
+      <div class="nav-pair nav-pair--mercury">
+        <label for="p-neptune" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-venus" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--venus">
+        <label for="p-mercury" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-earth" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--earth">
+        <label for="p-venus" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-mars" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--mars">
+        <label for="p-earth" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-jupiter" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--jupiter">
+        <label for="p-mars" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-saturn" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--saturn">
+        <label for="p-jupiter" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-uranus" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--uranus">
+        <label for="p-saturn" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-neptune" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+      <div class="nav-pair nav-pair--neptune">
+        <label for="p-uranus" class="explorer__nav explorer__nav--prev">← Previous</label>
+        <label for="p-mercury" class="explorer__nav explorer__nav--next">Next →</label>
+      </div>
+
+      <div class="explorer__dots">
+        <label for="p-mercury" class="explorer__dot" aria-label="Mercury"></label>
+        <label for="p-venus" class="explorer__dot" aria-label="Venus"></label>
+        <label for="p-earth" class="explorer__dot" aria-label="Earth"></label>
+        <label for="p-mars" class="explorer__dot" aria-label="Mars"></label>
+        <label for="p-jupiter" class="explorer__dot" aria-label="Jupiter"></label>
+        <label for="p-saturn" class="explorer__dot" aria-label="Saturn"></label>
+        <label for="p-uranus" class="explorer__dot" aria-label="Uranus"></label>
+        <label for="p-neptune" class="explorer__dot" aria-label="Neptune"></label>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="site-foot">
+    <p>Built with HTML &amp; CSS — no JavaScript. Orbits and navigation both run on CSS animation and the checkbox/radio hack.</p>
+  </footer>
+
+</body>
+</html>
